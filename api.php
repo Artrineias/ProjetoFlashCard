@@ -1,59 +1,108 @@
 <?php
 header('Content-Type: application/json');
 
-$file = 'data.json';
+$dir = 'decks/';
+if (!is_dir($dir)) mkdir($dir, 0777, true);
+
 $method = $_SERVER['REQUEST_METHOD'];
+$action = $_GET['action'] ?? '';
+
+if ($method === 'GET') {
+    if ($action === 'list') {
+        $files = glob($dir . '*.json');
+        $decks = array_map(function($f) use ($dir) {
+            return str_replace([$dir, '.json'], '', $f);
+        }, $files);
+        echo json_encode(array_values($decks));
+        exit;
+    }
+    
+    if ($action === 'get_deck') {
+        $deckName = $_GET['name'] ?? '';
+        $deckName = preg_replace('/[^a-z0-9_]/i', '', $deckName);
+        $file = $dir . $deckName . '.json';
+        
+        if (file_exists($file)) {
+            echo file_get_contents($file);
+        } else {
+            echo json_encode([]);
+        }
+        exit;
+    }
+}
 
 if ($method === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
-    
-    // Carrega ou inicia o array
-    $data = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
-    if (!is_array($data)) $data = [];
+    $act = $input['action'] ?? '';
 
-    // --- AÇÃO: CRIAR NOVO CARD ---
-    if (isset($input['action']) && $input['action'] === 'create') {
-        // Gera ID simples baseado no tempo para garantir unicidade
-        $newId = time(); 
+    if ($act === 'create_deck') {
+        $name = preg_replace('/[^a-z0-9_]/i', '', $input['name']);
+        if (!$name) { echo json_encode(['status'=>'error']); exit; }
         
-        $data[] = [
-            'id' => $newId,
-            'tema' => htmlspecialchars($input['tema']),
-            'dificuldade' => 'Fácil', // Começa fácil
-            'pergunta' => $input['pergunta'], // Sem htmlspecialchars aqui para URL funcionar melhor
-            'resposta' => $input['resposta'],
-            'erros' => 0
-        ];
+        $file = $dir . $name . '.json';
+        if (!file_exists($file)) file_put_contents($file, json_encode([]));
+        echo json_encode(['status' => 'success']);
     }
 
-    // --- AÇÃO: ATUALIZAR ERROS ---
-    if (isset($input['action']) && $input['action'] === 'update') {
+    if ($act === 'add_card') {
+        $deckName = preg_replace('/[^a-z0-9_]/i', '', $input['deck']);
+        $file = $dir . $deckName . '.json';
+        
+        $data = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
+        if (!is_array($data)) $data = [];
+
+        $data[] = [
+            'id' => uniqid(), 
+            'tema' => $input['tema'],
+            'dificuldade' => 'Fácil',
+            'pergunta' => $input['pergunta'],
+            'resposta' => $input['resposta'],
+            'erros' => 0,
+            'acertos' => 0 
+        ];
+
+        file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo json_encode(['status' => 'success']);
+    }
+    if ($act === 'update_status') {
+        $deckName = preg_replace('/[^a-z0-9_]/i', '', $input['deck']);
+        $file = $dir . $deckName . '.json';
         $targetId = $input['id'];
         $isError = $input['status'] === 'erro';
 
-        // Loop tradicional sem referência (&) para evitar o erro que você mencionou
-        for ($i = 0; $i < count($data); $i++) {
-            if ($data[$i]['id'] == $targetId) {
-                if (!isset($data[$i]['erros'])) $data[$i]['erros'] = 0;
+        if (file_exists($file)) {
+            $data = json_decode(file_get_contents($file), true);
+            $found = false;
+            foreach ($data as &$item) {
+                if ($item['id'] == $targetId) {
+                    
+                    if (!isset($item['erros'])) $item['erros'] = 0;
+                    if (!isset($item['acertos'])) $item['acertos'] = 0;
 
-                if ($isError) {
-                    $data[$i]['erros']++; // Aumenta erro
-                } else {
-                    // Se acertou, podemos diminuir o erro ou manter (opcional: aqui diminui)
-                    if ($data[$i]['erros'] > 0) $data[$i]['erros']--;
+                    if ($isError) {
+                        $item['erros']++;
+                        if ($item['erros'] > 2) $item['dificuldade'] = 'Difícil';
+                        else $item['dificuldade'] = 'Média';
+                    } else {
+                        $item['acertos']++;       
+                        if ($item['erros'] > 0) $item['erros']--; // Diminui o erro
+                        if ($item['erros'] == 0) $item['dificuldade'] = 'Fácil';
+                    }
+                    
+                    $found = true;
+                    break;
                 }
-
-                // Recalcula dificuldade
-                if ($data[$i]['erros'] == 0) $data[$i]['dificuldade'] = 'Fácil';
-                elseif ($data[$i]['erros'] < 3) $data[$i]['dificuldade'] = 'Média';
-                else $data[$i]['dificuldade'] = 'Difícil';
-                
-                break;
             }
+
+            if ($found) {
+                file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                echo json_encode(['status' => 'success', 'data' => $data]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'ID não encontrado']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Arquivo não existe']);
         }
     }
-
-    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    echo json_encode(['status' => 'success']);
 }
 ?>

@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "tema": "Vocabulário",
+        "dificuldade": "Fácil",
+        "pergunta": "Bookworm",
+        "resposta": "Devorador de livros / Traça de livros (Alguém que lê muito)",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 2,
+        "tema": "Frase",
+        "dificuldade": "Fácil",
+        "pergunta": "She loved them from the bottom of her heart.",
+        "resposta": "Ela os amava do fundo do seu coração.",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 3,
+        "tema": "Vocabulário",
+        "dificuldade": "Médio",
+        "pergunta": "Exasperated sigh",
+        "resposta": "Suspiro exasperado (Um suspiro de irritação ou cansaço)",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 4,
+        "tema": "Frase",
+        "dificuldade": "Médio",
+        "pergunta": "Time not spent reading books was time wasted.",
+        "resposta": "Tempo não gasto lendo livros era tempo desperdiçado.",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 5,
+        "tema": "Vocabulário",
+        "dificuldade": "Difícil",
+        "pergunta": "Unbeknownst",
+        "resposta": "Desconhecido / Sem o conhecimento de alguém",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 6,
+        "tema": "Vocabulário",
+        "dificuldade": "Médio",
+        "pergunta": "Sluggish",
+        "resposta": "Lento / Vagaroso / Sem energia (como ela se sentiu por causa da febre)",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 7,
+        "tema": "Frase",
+        "dificuldade": "Fácil",
+        "pergunta": "Stay close to me.",
+        "resposta": "Fique perto de mim.",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 8,
+        "tema": "Vocabulário",
+        "dificuldade": "Médio",
+        "pergunta": "Avalanche of books",
+        "resposta": "Avalanche de livros (Muitos livros caindo de uma vez)",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 9,
+        "tema": "Frase",
+        "dificuldade": "Difícil",
+        "pergunta": "I wouldn’t want to die from anything but an avalanche of books.",
+        "resposta": "Eu não gostaria de morrer de nada além de uma avalanche de livros.",
+        "erros": 0,
+        "acertos": 0
+    },
+    {
+        "id": 10,
+        "tema": "Expressão",
+        "dificuldade": "Médio",
+        "pergunta": "Life ain't that convenient.",
+        "resposta": "A vida não é tão conveniente assim. ('Ain't' é uma gíria para 'isn't')",
+        "erros": 0,
+        "acertos": 0
+    }
+]
