@@ -6,6 +6,8 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <div class="deck">
+        
+    </div>
 </body>
 </html>
