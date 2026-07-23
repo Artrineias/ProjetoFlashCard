@@ -1,126 +1,32 @@
-[
+{
+  "questoes": [
     {
-        "id": "1",
-        "tema": "Vocabulário",
-        "dificuldade": "Difícil",
-        "pergunta": "Bookworm",
-        "resposta": [
-            "Devorador de livros",
-            "Traça de livros"
-        ],
-        "descricao": "Alguém que lê muito.",
-        "erros": 3,
-        "acertos": 0
+      "id": "q_001",
+      "tema": "Infraestrutura",
+      "pergunta": "Qual é a principal vantagem de utilizar volumes no Docker?",
+      "resposta_certa": "Persistir dados gerados e utilizados pelos containers mesmo após sua exclusão.",
+      "respostas_erradas": [
+        "Aumentar o uso de CPU do container host.",
+        "Compilar o código PHP nativamente mais rápido.",
+        "Substituir a necessidade de um banco de dados.",
+        "Isolar a rede de comunicação entre containers."
+      ],
+      "dica": "Lembre-se do que acontece com os dados quando um container é removido ou recriado sem essa configuração.",
+      "anotacoes": "Questão de nível intermediário. Boa para testar conceitos básicos de persistência antes de entrar em bancos de dados."
     },
     {
-        "id": "2",
-        "tema": "Frase",
-        "dificuldade": "Média",
-        "pergunta": "She loved them from the bottom of her heart.",
-        "resposta": [
-            "Ela os amava do fundo do seu coração."
-        ],
-        "descricao": "",
-        "erros": 2,
-        "acertos": 0
-    },
-    {
-        "id": "3",
-        "tema": "Vocabulário",
-        "dificuldade": "Fácil",
-        "pergunta": "Exasperated sigh",
-        "resposta": [
-            "Suspiro exasperado"
-        ],
-        "descricao": "Um suspiro de irritação ou cansaço.",
-        "erros": 0,
-        "acertos": 1
-    },
-    {
-        "id": "4",
-        "tema": "Frase",
-        "dificuldade": "Média",
-        "pergunta": "Time not spent reading books was time wasted.",
-        "resposta": [
-            "Tempo não gasto lendo livros era tempo desperdiçado."
-        ],
-        "descricao": "",
-        "erros": 2,
-        "acertos": 0
-    },
-    {
-        "id": "5",
-        "tema": "Vocabulário",
-        "dificuldade": "Média",
-        "pergunta": "Unbeknownst",
-        "resposta": [
-            "Desconhecido",
-            "Sem o conhecimento de alguém"
-        ],
-        "descricao": "",
-        "erros": 2,
-        "acertos": 0
-    },
-    {
-        "id": "6",
-        "tema": "Vocabulário",
-        "dificuldade": "Média",
-        "pergunta": "Sluggish",
-        "resposta": [
-            "Lento",
-            "Vagaroso",
-            "Sem energia"
-        ],
-        "descricao": "Como ela se sentiu por causa da febre.",
-        "erros": 2,
-        "acertos": 0
-    },
-    {
-        "id": "7",
-        "tema": "Frase",
-        "dificuldade": "Média",
-        "pergunta": "Stay close to me.",
-        "resposta": [
-            "Fique perto de mim."
-        ],
-        "descricao": "",
-        "erros": 2,
-        "acertos": 0
-    },
-    {
-        "id": "8",
-        "tema": "Vocabulário",
-        "dificuldade": "Fácil",
-        "pergunta": "Avalanche of books",
-        "resposta": [
-            "Avalanche de livros"
-        ],
-        "descricao": "Muitos livros caindo de uma vez.",
-        "erros": 0,
-        "acertos": 1
-    },
-    {
-        "id": "9",
-        "tema": "Frase",
-        "dificuldade": "Difícil",
-        "pergunta": "I wouldn’t want to die from anything but an avalanche of books.",
-        "resposta": [
-            "Eu não gostaria de morrer de nada além de uma avalanche de livros."
-        ],
-        "descricao": "",
-        "erros": 0,
-        "acertos": 0
-    },
-    {
-        "id": "10",
-        "tema": "Expressão",
-        "dificuldade": "Médio",
-        "pergunta": "Life ain't that convenient.",
-        "resposta": [
-            "A vida não é tão conveniente assim."
-        ],
-        "descricao": "'Ain't' é uma gíria para 'isn't'.",
-        "erros": 0,
-        "acertos": 0
+      "id": "q_002",
+      "tema": "Sistemas Operacionais",
+      "pergunta": "Qual é o gerenciador de pacotes oficial padrão utilizado no Arch Linux?",
+      "resposta_certa": "pacman",
+      "respostas_erradas": [
+        "apt",
+        "yum",
+        "dnf",
+        "zypper"
+      ],
+      "dica": "O nome do comando lembra um jogo clássico de fliperama dos anos 80.",
+      "anotacoes": "Atenção: os alunos costumam confundir com o 'yay', mas ele é um wrapper para o AUR e não o oficial do sistema base."
     }
-]
+  ]
+}
